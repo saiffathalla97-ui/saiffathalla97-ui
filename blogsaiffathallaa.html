@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Happy Valentine Jana</title>
+
+<!-- Romantic Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  background: radial-gradient(circle at top, #2b0000, #000);
+  color: white;
+  overflow-x: hidden;
+}
+
+/* 🌹 FLOATING ROSES */
+.rose {
+  position: fixed;
+  top: -10%;
+  font-size: 24px;
+  animation: fall linear infinite;
+  opacity: 0.9;
+  pointer-events: none;
+}
+
+@keyframes fall {
+  0% {
+    transform: translateY(0) rotate(0deg) scale(0.8);
+  }
+  100% {
+    transform: translateY(120vh) rotate(360deg) scale(1.2);
+  }
+}
+
+/* SECTIONS */
+section {
+  min-height: 100vh;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px 20px;
+}
+
+section.active {
+  display: flex;
+}
+
+/* HOME */
+h1 {
+  font-family: 'Great Vibes', cursive;
+  font-size: 64px;
+  color: #ffb6c1;
+  margin-bottom: 30px;
+}
+
+button {
+  background: linear-gradient(135deg, #ff4d6d, #ff758f);
+  border: none;
+  padding: 14px 34px;
+  border-radius: 30px;
+  font-size: 18px;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 10px 25px rgba(255, 77, 109, 0.4);
+  transition: transform 0.3s;
+}
+
+button:hover {
+  transform: scale(1.08);
+}
+
+/* ENVELOPE */
+.envelope {
+  width: 220px;
+  height: 140px;
+  background: #fff;
+  position: relative;
+  margin-bottom: 30px;
+  border-radius: 6px;
+  animation: float 3s ease-in-out infinite;
+}
+
+.envelope::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-left: 110px solid transparent;
+  border-right: 110px solid transparent;
+  border-top: 70px solid #ffccd5;
+}
+
+@keyframes float {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+/* GIFT IMAGE */
+.gift-img {
+  width: 300px;
+  max-width: 90%;
+  margin: 20px 0;
+}
+
+/* TEXT STYLES */
+.small-title {
+  font-size: 22px;
+  font-style: italic;
+  color: #ffd6e0;
+  margin-bottom: 20px;
+}
+
+.quote {
+  font-family: 'Great Vibes', cursive;
+  font-size: 34px;
+  font-style: italic;
+  color: #ff9eb3;
+  margin: 14px 0;
+}
+
+/* YES / NO */
+.choice {
+  display: flex;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.no {
+  background: transparent;
+  border: 2px solid #ff758f;
+}
+
+/* FADE IN */
+.fade {
+  animation: fadeIn 1.2s ease forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+</style>
+</head>
+
+<body>
+
+<!-- 🌹 FLOATING ROSES SCRIPT -->
+<script>
+for (let i = 0; i < 40; i++) {
+  let rose = document.createElement("div");
+  rose.className = "rose";
+  rose.innerHTML = Math.random() > 0.5 ? "🌹" : "🌸";
+  rose.style.left = Math.random() * 100 + "vw";
+  rose.style.animationDuration = 6 + Math.random() * 6 + "s";
+  rose.style.fontSize = 18 + Math.random() * 30 + "px";
+  document.body.appendChild(rose);
+}
+</script>
+
+<!-- HOME -->
+<section id="home" class="active fade">
+  <h1>Happy Valentine Jana 🤍</h1>
+  <div class="envelope"></div>
+  <button onclick="nextSection('question')">Open Envelope</button>
+</section>
+
+<!-- QUESTION -->
+<section id="question" class="fade">
+  <h1 style="font-size:48px;">Hello Jana</h1>
+  <p class="small-title">Do you want to see your gift?</p>
+  <div class="choice">
+    <button onclick="nextSection('gift')">Yes 🤍</button>
+    <button class="no" onclick="alert('Maybe next time 🌹')">No thanks</button>
+  </div>
+</section>
+
+<!-- GIFT -->
+<section id="gift" class="fade">
+  <p class="small-title">These are for you 🤍</p>
+
+  <!-- YOUR IMAGE -->
+  <img src="flower.png" alt="Flowers" class="gift-img" />
+
+  <p class="quote">“Every flower reminds me of you.”</p>
+  <p class="quote">“Soft, beautiful, and impossible to forget.”</p>
+  <p class="quote">“You make everything bloom.”</p>
+</section>
+
+<script>
+function nextSection(id) {
+  document.querySelectorAll("section").forEach(sec => {
+    sec.classList.remove("active");
+  });
+  document.getElementById(id).classList.add("active");
+}
+</script>
+
+</body>
+</html>
